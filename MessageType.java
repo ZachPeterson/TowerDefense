@@ -1,0 +1,17 @@
+/**
+ * Enumeration holding the types of messages to send.
+ * This defines what the message should actually do.
+ *
+ * @author Zachary Peterson
+ * @version 1.0
+ */
+public enum MessageType {
+    UPDATE_SCORE, UPDATE_HEALTH, UPDATE_MONEY, PLACE_BASIC_TOWER,
+    PLACE_FAST_TOWER, QUIT_GAME, DEAL_DAMAGE, ADD_SCORE, ADD_MONEY, SPAWN_WAVE,
+    SPAWN_MONSTER, SPAWN_BASIC_TOWER, SPAWN_FAST_TOWER, ENABLE_SPAWN_BUTTON,
+    DISABLE_SPAWN_BUTTON, UPDATE_MONSTER_COUNT, UPDATE_CURRENT_WAVE, END_GAME,
+    START_GAME, PLACE_MEGA_TOWER, SPAWN_MEGA_TOWER, CHANGE_LEVEL, OPEN_MENU,
+    OPEN_GAME
+}
+
+
