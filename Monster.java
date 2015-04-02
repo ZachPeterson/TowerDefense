@@ -42,18 +42,16 @@ public class Monster {
                    + " monster");
         }
 
+		// Set up the base attributes for the monster
         nodeArrivalDistance = 2.0;
-
         speed = 40.0 +  2.0 * currentWave;
-
         health = 50.0 + 4.0 * currentWave;
         alive = true;
-
         damage = 20;
-
         pointValue = 100;
         moneyValue = 20;
 
+		// Try and load the image for the monster
         try {
             BufferedImage spriteImage = ImageIO.read(new File("monster.png"));
             mySprite = new Sprite(spriteImage, 2, 1, 4);
@@ -141,6 +139,8 @@ public class Monster {
                 MessageType.DEAL_DAMAGE, damage));
             alive = false;
         }
+		// If the monster's health has dropped to 0 or below, then the monster
+		// is no longer alive and we need to add score and money to the player
         if (health <= 0) {
             alive = false;
             MessageQueue.getInstance().push(
@@ -150,26 +150,36 @@ public class Monster {
                 new Message<Integer>(MessageRecipient.GAME_PANEL,
                 MessageType.ADD_MONEY, moneyValue));
         }
+		// Otherwise, update the monster
         if (alive) {
+			// Get the pathnode we should be moving towards
             PathNode currentNode
                 = PathNodeList.getInstance().getNode(nodeIndex);
+			// Make sure we actually have a node to move to
             if (currentNode != null) {
+				// Get the distance to it
                 double distanceToNode
                     = Math.sqrt(Math.pow(currentNode.getX() - x, 2)
                         + Math.pow(currentNode.getY() - y, 2));
+				// If Check to see if we have arrived at it
                 if (distanceToNode <= nodeArrivalDistance) {
+					// If we have, then check to see if we have another node
                     nodeIndex++;
                     currentNode = PathNodeList.getInstance().getNode(nodeIndex);
                     if (currentNode != null) {
+						// If we do, then get the distance to the next node
                         distanceToNode =
                             Math.sqrt(Math.pow(currentNode.getX() - x, 2)
                                 + Math.pow(currentNode.getY() - y, 2));
                     } else {
+						// Otherwise, we have reached the end, so move the
+						// monster off the screen and set it so it's not alive
                         x = -1000;
                         y = -1000;
                         alive = false;
                     }
                 }
+				// As long as we have a node, move towards it
                 if (currentNode != null) {
                     double directionX
                         = (currentNode.getX() - x) / distanceToNode;
@@ -179,12 +189,15 @@ public class Monster {
                     y += (directionY * speed * dt);
                 }
             } else {
+				// If we are no longer alive, then move the monster off of the
+				// screen
                 x = -1000;
                 y = -1000;
                 alive = false;
             }
         }
 
+		// Set the rotation and update the sprite
         double directionX
             = PathNodeList.getInstance().getNode(nodeIndex).getX() - x;
         double directionY

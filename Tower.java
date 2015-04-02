@@ -133,6 +133,7 @@ public class Tower {
      * @param monsters Vector containing all of the monsters on the level.
      */
     public void update(double dt, Vector<Monster> monsters) {
+		// Update the drawing of the laser
         if (displayLaser) {
             if (isLaserFading) {
                 currentFadeTime += dt;
@@ -141,11 +142,15 @@ public class Tower {
                     * laserAlphaStart);
             }
         }
+		
+		// Update our attack timing so that we can attack again if the attack
+		// has had proper time to cool down
         timeSinceLastAttack += dt;
         if (!canAttack && timeSinceLastAttack >= attackRate) {
             canAttack = true;
         }
         if (canAttack) {
+			// Find a target to attack and attack it if possible
             boolean hasAttacked = false;
             int i = 0;
             while (!hasAttacked && i < monsters.size()) {
@@ -161,10 +166,12 @@ public class Tower {
                     timeSinceLastAttack = 0.0;
                     canAttack = false;
 
+					// Increase the kill count if this tower killed it
                     if (killedMonster) {
                         myKills++;
                     }
 
+					// Set the target point for drawing the laser
                     laserTarget = new Point((int) (monsters.get(i).getX()
                         + monsters.get(i).getWidth() / 2),
                         (int) (monsters.get(i).getY()

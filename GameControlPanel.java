@@ -150,6 +150,7 @@ public class GameControlPanel extends JPanel implements Runnable {
 
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
+		// Create the panel items for when the game is playing
         score = new JLabel("Score: ");
         score.setPreferredSize(new Dimension(150, 20));
         score.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -189,6 +190,7 @@ public class GameControlPanel extends JPanel implements Runnable {
         spawnWave.setAlignmentX(Component.CENTER_ALIGNMENT);
         spawnWave.addActionListener(new SpawnWaveListener());
 
+		// Create the panel items for selecting a level from the main menu
         selectLevel = new JLabel("Select level to play");
         selectLevel.setPreferredSize(new Dimension(150, 20));
         selectLevel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -202,6 +204,7 @@ public class GameControlPanel extends JPanel implements Runnable {
         level2.setAlignmentX(Component.CENTER_ALIGNMENT);
         level2.addActionListener(new Level2Listener());
 
+		// Start up the game on the menu level
         MessageQueue.getInstance().push(new Message<Integer>(
             MessageRecipient.GAME_PANEL, MessageType.CHANGE_LEVEL, 0));
     }
@@ -307,7 +310,7 @@ public class GameControlPanel extends JPanel implements Runnable {
                     == MessageType.OPEN_GAME) {
                     setupGameControlPanel();
                 } else {
-                    System.out.println("Unrecognized message processed in game"
+                    System.out.println("Unrecognised message processed in game"
                         + " control panel");
                     System.out.println("Message contents are as follows:");
                     System.out.println("Message Recipient: "
@@ -319,6 +322,7 @@ public class GameControlPanel extends JPanel implements Runnable {
                 }
             }
 
+			// Sleep the thread for a while so we don't process things too quickly
             try {
                 Thread.sleep(50);
             } catch (Exception e) {
