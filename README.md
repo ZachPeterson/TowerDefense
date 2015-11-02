@@ -1,7 +1,7 @@
 # TowerDefense
 A simple tower defense game made entirely in stock Java (no special libraries)
 
-This game was made for a homework assignment in my entry level CS course. The idea was to use plain Java to show off some basic OO concepts as well as various other entry level Java concepts (such as generic types, queue data structure, etc). While it doesn't include sound, I threw in a few things that I though were pretty cool. Processing of the control panel and game are done in separate threads and communicate between eachother using a message queue. Towers are not placeable on the path, get a little bit stronger with each kill, and their lasers fade away after being fired. Enemies spawn in waves with some bosses in there as well. The level system is also extensible.
+This game was made for a homework assignment in my entry level CS course. The idea was to use plain Java to show off some basic OO concepts as well as various other entry level Java concepts (such as generic types, queue data structure, etc). While it doesn't include sound, I threw in a few things that I thought were pretty cool such as fading the lasers out, animating the monsters, bosses and self-upgrading towers. Processing of the control panel and game are done in separate threads and communicate between eachother using a message queue. Towers are not placeable on the path, get a little bit stronger with each kill, and their lasers fade away after being fired. Enemies spawn in waves with some bosses in there as well. The level system is also extensible.
 
 # Playing TowerDefense
 TowerDefense comes prebuilt in the repository and ready to play. In order to play it, launch it by double-clicking TowerDefense.jar, or manually from the command line in the 'Current Build' directory with:
