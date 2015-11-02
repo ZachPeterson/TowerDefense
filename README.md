@@ -8,7 +8,14 @@ TowerDefense comes prebuilt in the repository and ready to play. In order to pla
 ```
 java -jar TowerDefense.jar
 ```
-If you would like to compile it for yourself, you can simply use the ```javac``` command to compile the source code files and run it.
+If you would like to compile and run it for yourself, first compile all of the source files with:
+```
+javac *.java
+```
+Then run the main application class with:
+```
+java TowerDefenseGame
+```
 
 # The Level System
 The levels are decently extensible, but this was done in my first CS class and a bit before I learned some proper game design principles, so it's not the best thought out. Levels are defined in the level.cfg file. Each level has a background image, path image, and a file containing the level's path nodes. The one provided is as follows:
